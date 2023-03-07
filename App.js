@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import Task from './src/Components/Task';
 
@@ -6,20 +6,28 @@ import PopUpAdd from './src/Components/PopUpAdd'
 
 export default function App() {
   const [mostrarComponente, setMostrarComponente] = useState(false)
- 
+  const [descricoes, setDescricoes] = useState([])
+
   function exibir() {
     setMostrarComponente(true)
-    
+  }
+
+  function addTask(desc) {
+    if (desc != '') {
+      setDescricoes([...descricoes, { descricao: desc }])
+    }
   }
 
   return (
     <View style={styles.container}>
-      {/* <Task /> */}
+      {descricoes.map((item, index) => (
+        <Task key={index} text={item.descricao} />
+      ))}
+
       <TouchableOpacity style={styles.button} onPress={exibir}>
         <Text style={styles.icon}>+</Text>
       </TouchableOpacity>
-      {mostrarComponente && <PopUpAdd />}
-     
+      {mostrarComponente && <PopUpAdd setMostrarComponente={setMostrarComponente} addTask={addTask} />}
     </View>
   );
 }
@@ -32,6 +40,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
+    borderColor: 'white',
+    borderWidth: 2,
     backgroundColor: 'red',
     padding: 4,
     paddingHorizontal: 19,
@@ -44,5 +54,4 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30
   },
-
 });
