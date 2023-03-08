@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import Task from './src/Components/Task';
 
 import PopUpAdd from './src/Components/PopUpAdd'
@@ -20,9 +20,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <ScrollView style={styles.scroll}>
       {descricoes.map((item, index) => (
         <Task key={index} text={item.descricao} />
       ))}
+      </ScrollView>
 
       <TouchableOpacity style={styles.button} onPress={exibir}>
         <Text style={styles.icon}>+</Text>
@@ -54,4 +56,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 30
   },
+  scroll: {
+    width: 370,
+    marginTop: 70,
+    marginBottom: 60
+  },
+  
 });

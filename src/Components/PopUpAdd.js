@@ -12,7 +12,10 @@ export default function Task({ mostrarComponente, setMostrarComponente, addTask 
     setText(newText);
   };
   const addComponente = () => {
-    addTask(text)
+    if (text != '') {
+      addTask(`• ${text}`)
+      closeWindow()
+    }
   }
 
   return (
