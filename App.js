@@ -4,6 +4,10 @@ import Task from './src/Components/Task';
 
 import PopUpAdd from './src/Components/PopUpAdd'
 
+import Api from './src/api';
+
+const api = new Api();
+
 export default function App() {
   const [mostrarComponente, setMostrarComponente] = useState(false)
   const [descricoes, setDescricoes] = useState([])
@@ -12,14 +16,26 @@ export default function App() {
     setMostrarComponente(true)
   }
 
-  function addTask(desc) {
-    if (desc != '') {
-      setDescricoes([...descricoes, { descricao: desc }])
+  async function addTask(desc) {
+    if (desc !== '') {
+      try {
+        const newTask = { descricao: desc, id: descricoes.length };
+        await api.save(newTask);
+        setDescricoes([...descricoes, newTask]);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }
-  function removeTask(index) {
-    const newArray = descricoes.filter((item, i) => i !== index)
-    setDescricoes(newArray)
+  async function removeTask(index) {
+    try {
+      await api.remove(index)
+      const newArray = descricoes.filter((item, i) => i !== index)
+      setDescricoes(newArray)
+    } catch (error) {
+      console.log(error);
+    }
+
   }
 
   return (
@@ -27,7 +43,7 @@ export default function App() {
       <Text style={styles.textIntro}>{descricoes.length == 0 ? 'Clique em "+" para adicionar uma tarefa.' : ''}</Text>
       <ScrollView style={styles.scroll}>
         {descricoes.map((item, index) => (
-          <Task id={index} text={item.descricao} removeTask={removeTask} />
+          <Task key={index} id={index} text={`• ${item.descricao}`} removeTask={removeTask} />
         ))}
       </ScrollView>
 
