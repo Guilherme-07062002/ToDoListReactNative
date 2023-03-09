@@ -16,7 +16,9 @@ export default function Task({ id, text, removeTask }) {
   }
   function delTask() {
     //console.log(id)
+    check()
     removeTask(id)
+    
 
   }
   return (
@@ -52,12 +54,13 @@ const styles = StyleSheet.create({
   text: {
     position: 'relative',
     marginTop: 30,
-    left: 20,
+    left: 30,
     textAlign: 'left',
     fontSize: 16,
     textDecorationLine: 'none',
     width: 250,
-    textAlign: 'justify'
+    
+    letterSpacing: 2
   },
   check: {
     borderColor: 'grey',

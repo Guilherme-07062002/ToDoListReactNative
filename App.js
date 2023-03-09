@@ -11,6 +11,7 @@ const api = new Api();
 export default function App() {
   const [mostrarComponente, setMostrarComponente] = useState(false)
   const [descricoes, setDescricoes] = useState([])
+  const [idRegistro, setidRegistro] = useState(0)
 
   function exibir() {
     setMostrarComponente(true)
@@ -19,7 +20,8 @@ export default function App() {
   async function addTask(desc) {
     if (desc !== '') {
       try {
-        const newTask = { descricao: desc, id: descricoes.length };
+        const newTask = { descricao: desc, id: idRegistro };
+        setidRegistro( idRegistro + 1)
         await api.save(newTask);
         setDescricoes([...descricoes, newTask]);
       } catch (error) {
@@ -29,7 +31,8 @@ export default function App() {
   }
   async function removeTask(index) {
     try {
-      await api.remove(index)
+      //console.log(descricoes[index].id)
+      await api.remove(descricoes[index].id)
       const newArray = descricoes.filter((item, i) => i !== index)
       setDescricoes(newArray)
     } catch (error) {
