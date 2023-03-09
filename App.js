@@ -17,13 +17,18 @@ export default function App() {
       setDescricoes([...descricoes, { descricao: desc }])
     }
   }
+  function removeTask(index) {
+    const newArray = descricoes.filter((item, i) => i !== index)
+    setDescricoes(newArray)
+  }
 
   return (
     <View style={styles.container}>
+      <Text style={styles.textIntro}>{descricoes.length == 0 ? 'Clique em "+" para adicionar uma tarefa.' : ''}</Text>
       <ScrollView style={styles.scroll}>
-      {descricoes.map((item, index) => (
-        <Task key={index} text={item.descricao} />
-      ))}
+        {descricoes.map((item, index) => (
+          <Task id={index} text={item.descricao} removeTask={removeTask} />
+        ))}
       </ScrollView>
 
       <TouchableOpacity style={styles.button} onPress={exibir}>
@@ -61,5 +66,11 @@ const styles = StyleSheet.create({
     marginTop: 70,
     marginBottom: 60
   },
-  
+  textIntro: {
+    position: 'absolute',
+    top: '40%',
+    width: 300,
+    textAlign: 'center',
+    color: 'grey'
+  }
 });

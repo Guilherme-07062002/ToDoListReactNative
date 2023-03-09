@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-export default function Task({ text }) {
+export default function Task({ id, text, removeTask }) {
   const [checked, setChecked] = useState(false)
   const [opacityTask, setOpacityTask] = useState(styles.container.opacity)
   const [textLine, setTextLine] = useState(styles.text.textDecorationLine)
@@ -9,20 +9,26 @@ export default function Task({ text }) {
   const [showRemove, setShowRemove] = useState(styles.textRemover.display)
   function check() {
     setChecked(!checked)
-    !checked?setTextLine('line-through'):setTextLine('solid')
-    !checked?setOpacityTask(0.5):setOpacityTask(1)
-    !checked?setBorderLine('dashed'):setBorderLine('solid')
-    !checked?setShowRemove('flex'):setShowRemove('none')
+    !checked ? setTextLine('line-through') : setTextLine('none')
+    !checked ? setOpacityTask(0.5) : setOpacityTask(1)
+    !checked ? setBorderLine('dashed') : setBorderLine('solid')
+    !checked ? setShowRemove('flex') : setShowRemove('none')
+  }
+  function delTask() {
+    //console.log(id)
+    removeTask(id)
+
   }
   return (
-    <View style={{...styles.container, opacity: opacityTask, borderStyle: borderLine}}>
-      
-      <Text style={{...styles.text, textDecorationLine: textLine}}>{text}</Text>
+    <View style={{ ...styles.container, opacity: opacityTask, borderStyle: borderLine }}>
+
+      <Text style={{ ...styles.text, textDecorationLine: textLine }}>{text}</Text>
       <TouchableOpacity onPress={check} style={styles.check}>
-        <Text style={styles.checked}>{checked?'\u2713':''}</Text>
+        <Text style={styles.checked}>{checked ? '\u2713' : ''}</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={{...styles.remove}}>
-        <Text style={{...styles.textRemover, display: showRemove}}>Remover</Text>
+
+      <TouchableOpacity onPress={delTask} style={{ ...styles.remove }}>
+        <Text style={{ ...styles.textRemover, display: showRemove }}>Remover</Text>
       </TouchableOpacity>
 
     </View>
@@ -31,22 +37,27 @@ export default function Task({ text }) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignSelf: 'flex-start',
     marginBottom: 20,
     borderColor: 'black',
     borderWidth: 2,
     borderStyle: 'solid',
     backgroundColor: '#fff',
     width: 360,
-    height: 80,
-    opacity: 1
+    height: 'auto',
+    opacity: 1,
+    paddingBottom: 45
+
   },
   text: {
     position: 'relative',
-    top: 23,
+    marginTop: 30,
     left: 20,
     textAlign: 'left',
     fontSize: 16,
-    textDecorationLine: 'solid'
+    textDecorationLine: 'none',
+    width: 250,
+    textAlign: 'justify'
   },
   check: {
     borderColor: 'grey',
@@ -55,24 +66,24 @@ const styles = StyleSheet.create({
     width: 30,
     position: 'absolute',
     right: 20,
-    top: 25
+    top: '50%'
   },
   checked: {
-    textAlign: 'center', 
+    textAlign: 'center',
     position: 'relative',
     top: -4,
-    right: -1, 
+    right: -1,
     color: 'red'
   },
   remove: {
-    height: 30,
-    width: 65,
+    height: 20,
+    width: 62,
     position: 'absolute',
-    right: 225,
-    top: 30
+    right: 10,
+    bottom: 7
   },
-  textRemover:{
-    color:'red',
+  textRemover: {
+    color: 'red',
     fontSize: 10,
     borderBottomWidth: 1,
     borderColor: 'red',

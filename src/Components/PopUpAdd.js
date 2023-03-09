@@ -24,7 +24,9 @@ export default function Task({ mostrarComponente, setMostrarComponente, addTask 
       <TouchableOpacity onPress={closeWindow} style={styles.exit}>
         <Text style={{ color: 'white', textAlign: 'center' }}>X</Text>
       </TouchableOpacity>
-      <TextInput onChangeText={handleTextChange} value={text} style={styles.input}></TextInput>
+      <TextInput multiline={true} onChangeText={handleTextChange} value={text} style={styles.input}>
+
+      </TextInput>
       <TouchableOpacity style={styles.button} onPress={addComponente}>
         <Text style={{ color: 'white' }} >Salvar</Text>
       </TouchableOpacity>
@@ -57,7 +59,8 @@ const styles = StyleSheet.create({
     textAlignVertical: 'top',
     borderRadius: 10,
     borderColor: 'black',
-    borderWidth: 1
+    borderWidth: 1,
+
   },
   text: {
     position: 'absolute',
