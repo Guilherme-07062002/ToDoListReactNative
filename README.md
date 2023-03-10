@@ -3,7 +3,7 @@
 <p>Este é o repositório do código responsável pelo front-end da aplicação de lista de tarefas que desenvolvi utilizando React Native e Expo.<br> 
 Para inicializar a execução do app será necessário:</p>
 <ul>
-  <li>Fazer o git clone do repositório do back-end do projeto que está nesse endereço: <a href="https://github.com/Guilherme-07062002    /APIToDoList">Clique aqui</a> e inicializar o servidor;</li>
+  <li>Fazer o git clone do repositório do back-end do projeto que está nesse endereço: <a href="https://github.com/Guilherme-07062002/APIToDoList.git">Clique aqui</a> e inicializar o servidor;</li>
   <li>Instalar os pacotes necessários digitando 'npm i' no terminal;</li> 
   <li>Utilizar algum emulador ou o seu proṕrio smartphone com o app Expo Go (como eu fiz) para vê-lo funcionar;</li> 
 </ul>
