@@ -1,12 +1,13 @@
 # To-Do List React Native
 ## Lista de tarefas em React Native - (Front-end)
-<p>Este é o repositório do código responsável pelo front-end da aplicação de lista de tarefas que desenvolvi utilizando React Native e Expo.<br> 
+<p>Este é o repositório do código responsável pelo front-end da aplicação de lista de tarefas que desenvolvi utilizando React Native, Expo (Para executar o app no meu dispositivo durante o desenvolvimento), e Axios para realizar o consumo da API.<br> 
 Para inicializar a execução do app será necessário:</p>
 <ul>
   <li>Fazer o git clone do repositório do back-end do projeto que está nesse endereço: <a href="https://github.com/Guilherme-07062002/APIToDoList.git">Clique aqui</a> e inicializar o servidor;</li>
   <li>Instalar os pacotes necessários digitando <code>npm i</code> no terminal;</li> 
   <li>Para inicializar a execução digite <code>npm start</code>.</li>
-  <li>Utilize algum emulador ou o seu proṕrio smartphone com o app Expo Go (como eu fiz) para vê-lo funcionar;</li> 
+  <li>Utilize algum emulador ou o seu proṕrio smartphone com o app Expo Go (como eu fiz) para vê-lo funcionar;</li>
+  <li>Por ultimo, em src/api/index.js (Que é o local responsável por integrar a aplicação com o backend e realizar as requisições no banco com o Axios) será preciso alterar a constante <code>const address</code> para o valor do ip do seu computador, que será de onde o seu smartphone irá buscar os dados durante as requisições.</li>
 </ul>
 <p>Após tudo ok espera-se que seja possivel ver a aplicação funcionando normalmente.</p>
 
