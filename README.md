@@ -4,7 +4,7 @@
 Para inicializar a execução do app será necessário:</p>
 <ul>
   <li>Fazer o git clone do repositório do back-end do projeto que está nesse endereço: <a href="https://github.com/Guilherme-07062002/APIToDoList.git">Clique aqui</a> e inicializar o servidor;</li>
-  <li>Instalar os pacotes necessários digitando 'npm i' no terminal;</li> 
+  <li>Instalar os pacotes necessários digitando <code>npm i</code> no terminal;</li> 
   <li>Utilizar algum emulador ou o seu proṕrio smartphone com o app Expo Go (como eu fiz) para vê-lo funcionar;</li> 
 </ul>
 <p>Após tudo ok espera-se que será possivel ver a aplicação funcionando normalmente.</p>
