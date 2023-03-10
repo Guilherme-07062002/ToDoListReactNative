@@ -1,27 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import Task from './src/Components/Task';
-
-import PopUpAdd from './src/Components/PopUpAdd'
-
+import PopUpAdd from './src/Components/PopUpAdd';
 import Api from './src/api';
 
 const api = new Api();
 
 export default function App() {
-  const [mostrarComponente, setMostrarComponente] = useState(false)
-  const [descricoes, setDescricoes] = useState([])
-  const [idRegistro, setidRegistro] = useState(0)
+  const [mostrarComponente, setMostrarComponente] = useState(false);
+  const [descricoes, setDescricoes] = useState([]);
+  const [idRegistro, setidRegistro] = useState(0);
+
+  useEffect(() => {
+    async function fetchData() {
+      setDescricoes(await api.read());
+      setidRegistro(descricoes[descricoes.length - 1]?.id || 0);
+    }
+    fetchData();
+  }, []);
 
   function exibir() {
-    setMostrarComponente(true)
+    setMostrarComponente(true);
   }
 
   async function addTask(desc) {
     if (desc !== '') {
       try {
         const newTask = { descricao: desc, id: idRegistro };
-        setidRegistro( idRegistro + 1)
+        setidRegistro(idRegistro + 1);
         await api.save(newTask);
         setDescricoes([...descricoes, newTask]);
       } catch (error) {
@@ -29,16 +35,15 @@ export default function App() {
       }
     }
   }
+
   async function removeTask(index) {
     try {
-      //console.log(descricoes[index].id)
-      await api.remove(descricoes[index].id)
-      const newArray = descricoes.filter((item, i) => i !== index)
-      setDescricoes(newArray)
+      await api.remove(descricoes[index].id);
+      const newArray = descricoes.filter((item, i) => i !== index);
+      setDescricoes(newArray);
     } catch (error) {
       console.log(error);
     }
-
   }
 
   return (
@@ -74,16 +79,16 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     position: 'absolute',
     bottom: 30,
-    left: 30
+    left: 30,
   },
   icon: {
     color: 'white',
-    fontSize: 30
+    fontSize: 30,
   },
   scroll: {
     width: 370,
     marginTop: 70,
-    marginBottom: 60
+    marginBottom: 60,
   },
   textIntro: {
     position: 'absolute',
